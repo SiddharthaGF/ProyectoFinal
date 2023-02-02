@@ -32,7 +32,7 @@ public class UtilidadesGenerales {
 
     public String LeerCadena() {
         String string;
-        teclado = new Scanner(System.in);
+        Scanner teclado = new Scanner(System.in);
         while (true) {
             string = teclado.nextLine().trim();
             if (string.length() > 0) {

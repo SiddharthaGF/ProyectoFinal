@@ -1,36 +1,41 @@
-import modulos.RegistroEstudiantes;
-import modulos.UtilidadesGenerales;
-import modulos.VentaProductos;
+import modulos.registro.Registro;
+import modulos.venta.VentaProductos;
 import modulos.restaurante.Restaurante;
 
-public class Main {
+import static modulos.Consola.*;
 
-    static UtilidadesGenerales teclado = new UtilidadesGenerales();
+public class Main {
 
     private static void MensajeDespedida() {
         System.out.println("Nos vemos pronto!");
     }
 
-    public static void Menu() {
+    public static void main(String[] args) {
         while(true) {
-            System.out.println("\t\t### PROYECTO FINAL ###\n");
-            System.out.println("1 -> Asistente de restaurante.");
-            System.out.println("2 -> Aplicación para registrar la venta de productos a un cliente.");
-            System.out.println("3 -> Programa que permita almacenar los registros de varios estudiantes en un archivo.");
-            System.out.println("4 -> (Por definir)");
-            System.out.println("5 -> Salir");
-            System.out.print("Ingrese su opción >> ");
-            int opc = teclado.LeerNumeroIntervalo(1, 5);
+            ImprimirLinea("----------------------------------PROYECTO FINAL----------------------------------");
+            SaltarLinea();
+            ImprimirLinea("1 -> Asistente de restaurante.");
+            ImprimirLinea("2 -> Aplicación para registrar la venta de productos a un cliente.");
+            ImprimirLinea("3 -> Programa que permita almacenar los registros de varios estudiantes en un archivo.");
+            ImprimirLinea("4 -> (Por definir)");
+            ImprimirLinea("5 -> Salir");
+            Imprimir("Ingrese su opción");
+            int opc = LeerNumeroIntervalo(1, 5);
+            SaltarLinea();
             switch (opc) {
                 case 1:
+                    ImprimirLinea("-----------------------------ASISTENTE DE RESTAURANTE------------------------------");
                     Restaurante modulo1 = new Restaurante();
                     modulo1.Menu();
                     break;
                 case 2:
+                    ImprimirLinea("--------------------------------SISTEMA DE VENTAS---------------------------------");
                     VentaProductos modulo2 = new VentaProductos();
+                    modulo2.Menu();
                     break;
                 case 3:
-                    RegistroEstudiantes modulo3 = new RegistroEstudiantes();
+                    ImprimirLinea("-----------------------------REGISTRO DE ESTUDIANTES------------------------------");
+                    Registro modulo3 = new Registro();
                     break;
                 case 4:
                     break;
@@ -39,9 +44,5 @@ public class Main {
                     return;
             }
         }
-    }
-
-    public static void main(String[] args) {
-        Menu();
     }
 }

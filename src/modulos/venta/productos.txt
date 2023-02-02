@@ -1,0 +1,5 @@
+0001;quintal de arroz;1;200;50;45
+0002;quintal de azúcar;1;200;25;20
+0003;pantalón hombre;2;100;15;12
+0004;blusa mujer;2;100;15;13
+0005;jabón de manos;3;50;3;2.5

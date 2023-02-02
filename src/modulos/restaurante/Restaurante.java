@@ -108,10 +108,10 @@ public class Restaurante {
             System.out.println("No hay platos registrados");
             return;
         }
-        System.out.println("\t| ID -> NOMBRE |");
+        System.out.println("\t| ID \t| NOMBRE |");
         for (int i = 0; i < n; i++) {
             Plato plato = platos.get(i);
-            System.out.println((i + 1) + " -> " + plato.getNombre());
+            System.out.println("\t" + (i + 1) + " \t| " + plato.getNombre());
         }
         System.out.println("\t| FIN LISTA |");
     }
@@ -127,26 +127,27 @@ public class Restaurante {
     }
 
     private void SeleccionarPlatillos() {
-        int max = this.platos.size();
-       if (max == 1) {
-           int id = max + 1;
-           System.out.print("Ingrese su opción >> ");
-           int opc = teclado.LeerNumeroIntervalo(1, max);
-           Plato plato = this.platos.get(opc - 1);
-           if (VerificarIngredientes(plato)) {
-               Pedido pedido = new Pedido(id, plato);
-               pedidos.add(pedido);
-           } else {
-               System.out.println("No hay suficientes ingredientes para este plato.");
-           }
-           System.out.println("Qué desea hacer?");
-           System.out.println("1 -> Registrar otro pedido");
-           System.out.println("2 -> Regresar");
-           System.out.print("Ingrese su opción >> ");
-           opc = teclado.LeerNumeroIntervalo(1, 2);
-       } else {
-           System.out.print("Registre un plato antes.");
-       }
+        while(true) {
+            int max = this.platos.size();
+            if (max == 0) {
+                System.out.print("Registre un plato antes.");
+                return;
+            }
+            int id = max + 1;
+            System.out.print("Ingrese su opción >> ");
+            int opc = teclado.LeerNumeroIntervalo(1, max);
+            Plato plato = this.platos.get(opc - 1);
+            if (VerificarIngredientes(plato))
+                pedidos.add(new Pedido(id, plato));
+            else
+                System.out.println("No hay suficientes ingredientes para este plato.");
+            System.out.println("Qué desea hacer?");
+            System.out.println("1 -> Registrar otro pedido");
+            System.out.println("2 -> Regresar");
+            System.out.print("Ingrese su opción >> ");
+            opc = teclado.LeerNumeroIntervalo(1, 2);
+            if (opc == 2) return;
+        }
     }
 
     private void AnadirPedido() {
