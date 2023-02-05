@@ -14,7 +14,9 @@ public class VentaProductos {
     Cliente cliente;
     List<Producto> productos = new ArrayList<>();
     List<ProductoAComprar> productosAComprar = new ArrayList<>();
-    double[] descuentos = new double[]{0.25, 0.15, 0.10};
+    double[] descuentos = new double[]{0.07, 0.05, 0.06};
+
+    double iva = 0.12;
 
     public void Menu() {
         CargarDatosProductos();
@@ -35,7 +37,6 @@ public class VentaProductos {
 
     private void SeleccionarProductos() {
         int opc = 1;
-        int cantidadTotal = 0;
         while (true) {
             if (opc == 1) {
                 String codigo;
@@ -49,14 +50,13 @@ public class VentaProductos {
                 Imprimir("Ingrese la cantidad");
                 int max = producto.getStock();
                 int cantidad = LeerNumeroIntervalo(0, max);
-                cantidadTotal += cantidad;
                 productosAComprar.add(new ProductoAComprar(producto, cantidad));
             }
             else if (opc == 2) {
                 MostrarProductos(productosAComprar);
             }
             else {
-                AplicarDescuento(cantidadTotal);
+                AplicarDescuento();
                 return;
             }
             SaltarLinea();
@@ -96,16 +96,22 @@ public class VentaProductos {
         MostrarProductos(productosAComprar);
     }
 
-    private void AplicarDescuento(int cantidad) {
+    private void AplicarDescuento() {
         int n = productosAComprar.size();
         for (int i = 0; i < n; i++) {
             ProductoAComprar productos = productosAComprar.get(i);
             double descuento;
             double subTotal;
-            if (cantidad < 6) descuento = 0;
-            else descuento = descuentos[productos.getProducto().getTipo()];
-            if (cantidad < 6) subTotal = productos.getProducto().getPrecioNormal();
-            else subTotal = productos.getProducto().getPrecioNormal() * (1 - descuento);
+            double precio = productos.getProducto().getPrecioNormal();
+            int cantidad = productos.getCantidad();
+            if (cantidad < 6) {
+                descuento = 0;
+                subTotal = precio * cantidad;
+            }
+            else {
+                descuento = descuentos[productos.getProducto().getTipo()];
+                subTotal = precio * cantidad * (1 - descuento);
+            }
             productos.setDescuento(descuento);
             productos.setSubtotal(subTotal);
         }
@@ -114,18 +120,22 @@ public class VentaProductos {
     private void MostrarProductos(List<ProductoAComprar> productosAComprar) {
         SaltarLinea();
         ImprimirLinea("--------------------------------DETALLE--------------------------------");
-        String formato = "| %-20s | %-5s | %-10s | %-10s | %-10s |";
-        printf(formato, "NOMBRE", "TIPO", "CANTIDAD", "DESCUENTO", "SUBTOTAL");
+        String formato = "| %-20s | %-5s | %-10s | %-10s |";
+        printf(formato, "NOMBRE", "CANTIDAD", "PRECIO", "SUBTOTAL");
+        double total = 0;
+        double descuento = 0;
         for (int i = 0; i < productosAComprar.size(); i++) {
             ProductoAComprar producto = productosAComprar.get(i);
-            printf(formato,
-                    producto.getProducto().getProducto(),
-                    producto.getProducto().getTipo(),
-                    producto.getCantidad(),
-                    producto.getDescuento(),
-                    producto.getDescuento()
-            );
+            String nombre = producto.getProducto().getProducto();
+            int cantidad =  producto.getCantidad();
+            double precio = cantidad >= 6 ?  producto.getProducto().getPrecioAlPorMayor() :  producto.getProducto().getPrecioNormal();;
+            double subtotal = producto.getSubtotal();
+            total += producto.getSubtotal();
+            printf(formato, nombre, cantidad, precio, subtotal);
         }
+        ImprimirLinea("Total: " + total);
+        ImprimirLinea("Descuento: " + descuento);
+        ImprimirLinea("IVA: "  + (100*iva));
         ImprimirLinea("-----------------------------------------------------------------------");
         SaltarLinea();
     }
@@ -173,7 +183,14 @@ public class VentaProductos {
             Scanner sc = new Scanner(new File(nombreArchivo));
             while (sc.hasNextLine()) {
                 String[] datos = sc.nextLine().split(";");
-                productos.add(new Producto(datos[0], datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]), Double.parseDouble(datos[4]), Double.parseDouble(datos[5])));
+                productos.add(new Producto(
+                        datos[0],
+                        datos[1],
+                        Integer.parseInt(datos[2]),
+                        Integer.parseInt(datos[3]),
+                        Double.parseDouble(datos[4]),
+                        Double.parseDouble(datos[5])
+                ));
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -36,6 +36,7 @@ public class Main {
                 case 3:
                     ImprimirLinea("-----------------------------REGISTRO DE ESTUDIANTES------------------------------");
                     Registro modulo3 = new Registro();
+                    modulo3.principal();
                     break;
                 case 4:
                     break;
