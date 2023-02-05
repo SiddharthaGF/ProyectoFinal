@@ -1,18 +1,17 @@
 package modulos;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 public class Consola {
 
-	public static void Imprimir(Object linea) {
-		System.out.print(linea);
+	public static void Imprimir(Object argumento) {
+		System.out.print(argumento);
 	}
 
-	public static void ImprimirLinea(Object linea) {
-		System.out.println(linea);
+	public static void ImprimirLinea(Object argumento) {
+		System.out.println(argumento);
 	}
 
 	public static void SaltarLinea() {
@@ -90,6 +89,13 @@ public class Consola {
 				Imprimir("Fecha no válida, intente de nuevo");
 			}
 		}
+	}
+
+	public static void EsperarTecla() {
+		Imprimir("Presione ENTER para continuar...");
+		Scanner teclado = new Scanner(System.in);
+		teclado.nextLine();
+		teclado.reset();
 	}
 
 }

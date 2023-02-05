@@ -1,4 +1,4 @@
-package modulos.registro;
+package modulos;
 
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -10,7 +10,14 @@ import java.util.List;
 import static modulos.Consola.*;
 
 public class Registro {
-	private final List<Estudiante> estudiantes = new ArrayList<>();
+
+	private final List<String> cedula = new ArrayList<>();
+	private final List<String> nombre = new ArrayList<>();
+	private final List<String> apellido = new ArrayList<>();
+	private final List<String> fechaNacimiento = new ArrayList<>();
+	private final List<Character> genero = new ArrayList<>();
+	private final List<String> estadoCivil = new ArrayList<>();
+
 	private final List<String> generos = new ArrayList<>(Arrays.asList("M", "F"));
 	private final List<String> estados = new ArrayList<>(Arrays.asList("SOLTERO", "CASADO", "DIVORCIADO", "VIUDO"));
 
@@ -36,71 +43,70 @@ public class Registro {
 	}
 
 	private void registroApellidosEmpiezaVocal() {
-		List<Estudiante> apellidosVocal = new ArrayList<>();
-		for (int i = 0; i < estudiantes.size(); i++) {
-			Estudiante estudiante = estudiantes.get(i);
-			char letra = estudiante.getApellido().toUpperCase().charAt(0);
+		List<Integer> idApellidosVocal = new ArrayList<>();
+		for (int i = 0; i < nombre.size(); i++) {
+			String apellido = this.apellido.get(i);
+			char letra = apellido.toUpperCase().charAt(0);
 			if (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O' || letra == 'U') {
-				apellidosVocal.add(estudiante);
+				idApellidosVocal.add(i);
 			}
 		}
-		guardarRegistro(apellidosVocal, "que su apellido comience con vocal");
+		guardarRegistro(idApellidosVocal, "que su apellido comience con vocal");
 	}
 
 	private void registroSoloSoleros() {
-		List<Estudiante> solteros = new ArrayList<>();
-		for (int i = 0; i < estudiantes.size(); i++) {
-			Estudiante estudiante = estudiantes.get(i);
-			if (estudiante.getEstadoCivil().equalsIgnoreCase("SOLTERO")) {
-				solteros.add(estudiante);
+		List<Integer> idSolteros = new ArrayList<>();
+		for (int i = 0; i < nombre.size(); i++) {
+			String estado = this.estadoCivil.get(i);
+			if (estado.equalsIgnoreCase("SOLTERO")) {
+				idSolteros.add(i);
 			}
 		}
-		guardarRegistro(solteros, "Estudiantes de estado civil soltero");
+		guardarRegistro(idSolteros, "Estudiantes de estado civil soltero");
 	}
 
 	private void registroSoloMujeres() {
-		List<Estudiante> mujeres = new ArrayList<>();
-		for (int i = 0; i < estudiantes.size(); i++) {
-			Estudiante estudiante = estudiantes.get(i);
-			if (estudiante.getGenero() == 'F') {
-				mujeres.add(estudiante);
+		List<Integer> idMujeres = new ArrayList<>();
+		for (int i = 0; i < nombre.size(); i++) {
+			char genero = this.genero.get(i);
+			if (genero == 'F') {
+				idMujeres.add(i);
 			}
 		}
-		guardarRegistro(mujeres, "Estudiantes de genero femenino");
+		guardarRegistro(idMujeres, "Estudiantes de genero femenino");
 	}
 
 	private void registroMayores18() {
-		List<Estudiante> mayores18 = new ArrayList<>();
-		for (int i = 0; i < estudiantes.size(); i++) {
-			Estudiante estudiante = estudiantes.get(i);
+		List<Integer> IdMayores18 = new ArrayList<>();
+		for (int i = 0; i < nombre.size(); i++) {
 			try {
 				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+				Date fechaNacimiento = formato.parse( this.fechaNacimiento.get(i));
 				Date fechaActual = new Date();
-				Date fechaNacimiento = formato.parse(estudiante.getFechaNacimiento());
 				long diferencia = fechaActual.getTime() - fechaNacimiento.getTime();
 				int edad = (int) (diferencia / (1000 * 60 * 60 * 24)) / 365;
 				if (edad >= 18) {
-					mayores18.add(estudiante);
+					IdMayores18.add(i);
 				}
 			} catch (Exception e) {
 				//
 			}
 		}
-		guardarRegistro(mayores18, "Estudiantes mayores a 18 años");
+		guardarRegistro(IdMayores18, "Estudiantes mayores a 18 años");
 	}
 
-	private void guardarRegistro(List<Estudiante> estudiantes, String nombreArchivo) {
-		if (estudiantes.size() >= 0) {
+	private void guardarRegistro(List<Integer> ids, String nombreArchivo) {
+		if (ids.size() > 0) {
 			try {
 				PrintWriter escritor = new PrintWriter(nombreArchivo + ".txt");
-				for (int i = 0; i < estudiantes.size(); i++) {
-					Estudiante estudiante = estudiantes.get(i);
-					escritor.println(estudiante.getCedula() + ";"
-						+ estudiante.getNombre() + ";"
-						+ estudiante.getApellido() + ";"
-						+ estudiante.getFechaNacimiento() + ";"
-						+ estudiante.getGenero() + ";"
-						+ estudiante.getEstadoCivil()
+				for (int i = 0; i < nombre.size(); i++) {
+					int id = ids.get(i);
+					escritor.println(this.cedula.get(id) + ";"
+						+ this.nombre.get(id) + ";"
+						+ this.apellido.get(id) + ";"
+						+ this.fechaNacimiento.get(id) + ";"
+						+ this.genero.get(id) + ";"
+						+ this.estadoCivil.get(id)
 					);
 				}
 				escritor.close();
@@ -129,7 +135,12 @@ public class Registro {
 		char genero = LeerCadenaConOpcion(generos).charAt(0);
 		Imprimir("Estado civil (Soltero/Casado/Divorciado/Viudo)");
 		String estado = LeerCadenaConOpcion(estados);
-		estudiantes.add(new Estudiante(cedula, nombre, apellido, fechaNacimiento, genero, estado));
+		this.cedula.add(cedula);
+		this.nombre.add(nombre);
+		this.apellido.add(apellido);
+		this.fechaNacimiento.add(fechaNacimiento);
+		this.genero.add(genero);
+		this.estadoCivil.add(estado);
 		SaltarLinea();
 	}
 

@@ -1,6 +1,6 @@
-import modulos.registro.Registro;
-import modulos.venta.VentaProductos;
-import modulos.restaurante.Restaurante;
+import modulos.Registro;
+import modulos.VentaProductos;
+import modulos.Restaurante;
 
 import static modulos.Consola.*;
 
@@ -24,7 +24,6 @@ public class Main {
             SaltarLinea();
             switch (opc) {
                 case 1:
-                    ImprimirLinea("-----------------------------ASISTENTE DE RESTAURANTE------------------------------");
                     Restaurante modulo1 = new Restaurante();
                     modulo1.Menu();
                     break;
