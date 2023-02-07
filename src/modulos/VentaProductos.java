@@ -4,7 +4,9 @@ import static modulos.Consola.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -106,7 +108,34 @@ public class VentaProductos {
     }
 
     private void ImprimirFactura () {
-
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyyMMdd");
+        String nombreArchivo = cedula + "-" + LocalDate.now().format(formatoFecha);
+        try {
+            PrintWriter escritor = new PrintWriter(nombreArchivo + ".txt");
+            escritor.println("----------------------------DETALLE----------------------------");
+            String formato = "| %-20s | %-10s | %-10s | %-10s |";
+            escritor.printf(formato, "NOMBRE", "CANTIDAD", "PRECIO", "SUBTOTAL");
+            double total = 0;
+            double descuento = 0;
+            for (int i = 0; i < ids.size(); i++) {
+                int id = ids.get(i);
+                String nombre = producto.get(id);
+                int cantidad =  cantidades.get(i);
+                double precio = cantidad >= 6 ?  precioAlPorMayor.get(id) :  precioNormal.get(id);
+                double subtotal = cantidad * precio;
+                total += subtotal;
+                escritor.printf(formato, nombre, cantidad, precio, subtotal);
+            }
+             escritor.println("---------------------------------------------------------------");
+             escritor.println("Total: " + total);
+             escritor.println("Descuento: " + descuento);
+             escritor.println("IVA: "  + (100*iva));
+             escritor.println("---------------------------------------------------------------");
+            escritor.close();
+            ImprimirLinea("Factura '" + nombreArchivo + "' impreso con éxito.");
+        } catch (Exception e) {
+            ImprimirLinea("Error al imprimir factura '" + nombreArchivo + "'.");
+        }
     }
 
     private void EnviarFactura() {
@@ -117,7 +146,6 @@ public class VentaProductos {
         ImprimirLinea("Numero teléfono: " + telefono);
         ImprimirLinea("Dirección de correo: " + correo);
         ImprimirLinea("Fecha: " + LocalDate.now());
-
         MostrarProductos(ids, cantidades);
     }
 

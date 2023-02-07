@@ -9,20 +9,20 @@ import static modulos.Consola.*;
 public class Banco {
 
 	// Listas para usuario
-	private List<String> cedula = new ArrayList<>();
-	private List<String> nombre = new ArrayList<>();
-	private List<String> apellido = new ArrayList<>();
-	private List<String> telefono = new ArrayList<>();
-	private List<String> correo = new ArrayList<>();
+	private final List<String> cedula = new ArrayList<>();
+	private final List<String> nombre = new ArrayList<>();
+	private final List<String> apellido = new ArrayList<>();
+	private final List<String> telefono = new ArrayList<>();
+	private final List<String> correo = new ArrayList<>();
 
 	// Listas cuentas
-	private List<String> numerosCuenta = new ArrayList<>();
-	private List<String> cedulasCuenta = new ArrayList<>();
-	private List<Double> saldosCuenta = new ArrayList<>();
+	private final List<String> numerosCuenta = new ArrayList<>();
+	private final List<String> cedulasCuenta = new ArrayList<>();
+	private final List<Double> saldosCuenta = new ArrayList<>();
 
 	// Listas para transferencias
-	private List<String> tipoTransaccion = Arrays.asList("Deposito", "Retiro", "Transferencia");
-	private List<List<String>> transacciones = new ArrayList<>();
+	private final List<String> tipoTransaccion = Arrays.asList("Deposito", "Retiro", "Transferencia");
+	private final List<List<String>> transacciones = new ArrayList<>();
 
 	public void Menu() {
 		while (true) {
@@ -72,7 +72,7 @@ public class Banco {
 		double monto = LeerNumeroEnIntervalo(1, saldoOrigen);
 		saldosCuenta.set(indexOrigen, saldoOrigen - monto);
 		saldosCuenta.set(indexDestino, saldoDestino + monto);
-		transacciones.add(Arrays.asList(numeroTransaccion, cuentaOrigen, tipoTransaccion.get(2) + "-" + String.valueOf(monto), cuentaDestino));
+		transacciones.add(Arrays.asList(numeroTransaccion, cuentaOrigen, tipoTransaccion.get(2) + "-" + monto, cuentaDestino));
 	}
 
 	private void RealizarTransaccion() {
@@ -151,7 +151,7 @@ public class Banco {
 		Imprimir("Monto deposito");
 		double deposito = LeerNumeroMayorQue(0);
 		saldosCuenta.set(index, saldo + deposito);
-		transacciones.add(Arrays.asList(numeroTransaccion, cuenta, tipoTransaccion.get(0), "+" + String.valueOf(deposito), "-"));
+		transacciones.add(Arrays.asList(numeroTransaccion, cuenta, tipoTransaccion.get(0), "+" + deposito, "-"));
 	}
 
 	private void RealizarRetiro() {
@@ -165,7 +165,7 @@ public class Banco {
 		Imprimir("Monto retiro (máximo " + saldo + ")");
 		double retiro = LeerNumeroEnIntervalo(1, saldo);
 		saldosCuenta.set(index, saldo - retiro);
-		transacciones.add(Arrays.asList(numeroTransaccion, cuenta, tipoTransaccion.get(1), "-" + String.valueOf(retiro), "-"));
+		transacciones.add(Arrays.asList(numeroTransaccion, cuenta, tipoTransaccion.get(1), "-" + retiro, "-"));
 	}
 
 	private void MostrarCuentas() {

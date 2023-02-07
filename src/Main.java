@@ -16,8 +16,8 @@ public class Main {
             ImprimirLinea("----------------------------------PROYECTO FINAL----------------------------------");
             SaltarLinea();
             ImprimirLinea("1 -> Asistente de restaurante.");
-            ImprimirLinea("2 -> Aplicación para registrar la venta de productos a un cliente.");
-            ImprimirLinea("3 -> Programa que permita almacenar los registros de varios estudiantes en un archivo.");
+            ImprimirLinea("2 -> Sistema de ventas");
+            ImprimirLinea("3 -> Registro de estudiantes.");
             ImprimirLinea("4 -> Sistema de banco");
             ImprimirLinea("5 -> Salir");
             Imprimir("Ingrese su opción");
