@@ -1,3 +1,4 @@
+import modulos.Banco;
 import modulos.Registro;
 import modulos.VentaProductos;
 import modulos.Restaurante;
@@ -17,10 +18,10 @@ public class Main {
             ImprimirLinea("1 -> Asistente de restaurante.");
             ImprimirLinea("2 -> Aplicación para registrar la venta de productos a un cliente.");
             ImprimirLinea("3 -> Programa que permita almacenar los registros de varios estudiantes en un archivo.");
-            ImprimirLinea("4 -> (Por definir)");
+            ImprimirLinea("4 -> Sistema de banco");
             ImprimirLinea("5 -> Salir");
             Imprimir("Ingrese su opción");
-            int opc = LeerNumeroIntervalo(1, 5);
+            int opc = LeerNumeroEnIntervalo(1, 5);
             SaltarLinea();
             switch (opc) {
                 case 1:
@@ -38,6 +39,8 @@ public class Main {
                     modulo3.principal();
                     break;
                 case 4:
+                    Banco modulo4 = new Banco();
+                    modulo4.Menu();
                     break;
                 default:
                     MensajeDespedida();

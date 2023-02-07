@@ -46,7 +46,7 @@ public class Consola {
 		}
 	}
 
-	public static int LeerNumeroIntervalo(int min, int max) {
+	public static int LeerNumeroEnIntervalo(double min, double max) {
 		int num;
 		Scanner teclado = new Scanner(System.in);
 		while (true) {
@@ -61,15 +61,15 @@ public class Consola {
 	}
 
 	public static int LeerNumeroMayorQue(int valor) {
-		return LeerNumeroIntervalo(valor, Integer.MAX_VALUE);
+		return LeerNumeroEnIntervalo(valor, Integer.MAX_VALUE);
 	}
 
 	public static int LeerNumeroMenorQue(int valor) {
-		return LeerNumeroIntervalo(-Integer.MAX_VALUE, valor);
+		return LeerNumeroEnIntervalo(-Integer.MAX_VALUE, valor);
 	}
 
 	public static int LeerNumero() {
-		return LeerNumeroIntervalo(0, 0);
+		return LeerNumeroEnIntervalo(0, 0);
 	}
 
 	public static void printf(String formato, Object... datos) {

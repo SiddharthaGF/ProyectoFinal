@@ -47,7 +47,7 @@ public class Restaurante {
 			ImprimirLinea("2 -> Revisar lista de ingredientes");
 			ImprimirLinea("3 -> Regresar");
 			Imprimir("Ingrese su opción");
-			opc = LeerNumeroIntervalo(1, 3);
+			opc = LeerNumeroEnIntervalo(1, 3);
 		}
 	}
 
@@ -112,7 +112,7 @@ public class Restaurante {
 		while (true) {
 			if (opc == 1) {
 				Imprimir("Ingrese el ID del ingrediente");
-				int idIngrediente = LeerNumeroIntervalo(0, numeroIngredientes) - 1;
+				int idIngrediente = LeerNumeroEnIntervalo(0, numeroIngredientes) - 1;
 				Imprimir("Ingrese la cantidad");
 				int cantidad = LeerNumeroMayorQue(0);
 				ids.add(idIngrediente);
@@ -124,7 +124,7 @@ public class Restaurante {
 			ImprimirLinea("2 -> Revisar lista de ingredientes del plato");
 			ImprimirLinea("3 -> Guardar y regresar");
 			Imprimir("Ingrese su opción");
-			opc = LeerNumeroIntervalo(1, 3);
+			opc = LeerNumeroEnIntervalo(1, 3);
 			SaltarLinea();
 			if (opc == 2)
 				MostrarIngredientes(nombre, ids, cantidades);
@@ -177,7 +177,7 @@ public class Restaurante {
 				return;
 			}
 			Imprimir("Ingrese su opción");
-			int idPlato = LeerNumeroIntervalo(1, cantidadPlatos) - 1;
+			int idPlato = LeerNumeroEnIntervalo(1, cantidadPlatos) - 1;
 			List<Integer> ids = idIngredientes.get(idPlato);
 			List<Integer> cantidad = cantidadIngredientes.get(idPlato);
 			String nombre = nombresPlatos.get(idPlato);
@@ -191,7 +191,7 @@ public class Restaurante {
 			ImprimirLinea("1 -> Registrar otro pedido");
 			ImprimirLinea("2 -> Regresar");
 			Imprimir("Ingrese su opción");
-			int opc = LeerNumeroIntervalo(1, 2);
+			int opc = LeerNumeroEnIntervalo(1, 2);
 			if (opc == 2) {
 				return;
 			}
@@ -236,7 +236,7 @@ public class Restaurante {
 			ImprimirLinea("4 -> Revisar registro de pedidos.");
 			ImprimirLinea("5 -> Regresar");
 			Imprimir("Ingrese su opción");
-			int opc = LeerNumeroIntervalo(1, 5);
+			int opc = LeerNumeroEnIntervalo(1, 5);
 			switch (opc) {
 				case 1:
 					AnadirIngrediente();

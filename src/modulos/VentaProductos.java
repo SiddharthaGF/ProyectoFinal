@@ -70,7 +70,7 @@ public class VentaProductos {
                 } while (id == -1);
                 Imprimir("Ingrese la cantidad");
                 int max = stock.get(id);
-                int cantidad = LeerNumeroIntervalo(0, max);
+                int cantidad = LeerNumeroEnIntervalo(0, max);
                 ids.add(id);
                 cantidades.add(cantidad);
             }
@@ -87,7 +87,7 @@ public class VentaProductos {
             ImprimirLinea("2 -> Revisar lista productos");
             ImprimirLinea("3 -> Regresar");
             Imprimir("Ingrese su opción");
-            opc = LeerNumeroIntervalo(1, 3);
+            opc = LeerNumeroEnIntervalo(1, 3);
         }
     }
 
@@ -97,7 +97,7 @@ public class VentaProductos {
         ImprimirLinea("1 -> Física");
         ImprimirLinea("2 -> Electrónica");
         Imprimir("Ingrese su opción");
-        int opc = LeerNumeroIntervalo(1, 2);
+        int opc = LeerNumeroEnIntervalo(1, 2);
         if (opc == 1) {
             ImprimirFactura();
         } else {

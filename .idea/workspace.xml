@@ -5,22 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f300283-5dd3-4023-93da-ec17a820103f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/modulos/Restaurante.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modulos/Banco.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modulos/Consola.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modulos/Consola.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modulos/UtilidadesGenerales.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modulos/registro/Estudiante.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modulos/registro/Registro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modulos/Registro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modulos/restaurante/Ingrediente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modulos/restaurante/Pedido.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modulos/restaurante/Plato.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modulos/restaurante/Restaurante.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modulos/venta/Cliente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modulos/venta/Producto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modulos/venta/ProductoAComprar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modulos/venta/VentaProductos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modulos/VentaProductos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modulos/venta/productos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/modulos/productos.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modulos/Registro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modulos/Registro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modulos/Restaurante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modulos/Restaurante.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modulos/VentaProductos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modulos/VentaProductos.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +52,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
@@ -104,7 +96,8 @@
       <workItem from="1675581740698" duration="1910000" />
       <workItem from="1675584282224" duration="48000" />
       <workItem from="1675584345717" duration="9436000" />
-      <workItem from="1675627506658" duration="11595000" />
+      <workItem from="1675627506658" duration="12250000" />
+      <workItem from="1675718711480" duration="11686000" />
     </task>
     <task id="LOCAL-00001" summary="add module &quot;Restaurante&quot;">
       <created>1675274127720</created>
@@ -127,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675617434089</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fix all modules">
+      <created>1675639913384</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1675639913384</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,7 +137,8 @@
     <MESSAGE value="add module &quot;Restaurante&quot;" />
     <MESSAGE value="add module &quot;Ventas&quot;" />
     <MESSAGE value="add module &quot;Registro Estudiantes&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="add module &quot;Registro Estudiantes&quot;" />
+    <MESSAGE value="fix all modules" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix all modules" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -146,6 +147,11 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/modulos/Banco.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>

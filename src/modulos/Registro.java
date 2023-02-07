@@ -27,7 +27,7 @@ public class Registro {
 			ImprimirLinea("Qué desea hacer?");
 			ImprimirLinea("1 -> Ingresar otro estudiante");
 			ImprimirLinea("2 -> Guardar y salir");
-			int opc = LeerNumeroIntervalo(1, 2);
+			int opc = LeerNumeroEnIntervalo(1, 2);
 			if (opc == 2) {
 				crearRegistros();
 				return;
