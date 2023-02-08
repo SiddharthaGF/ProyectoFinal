@@ -81,7 +81,7 @@ public class Registro {
 		for (int i = 0; i < nombre.size(); i++) {
 			try {
 				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-				Date fechaNacimiento = formato.parse( this.fechaNacimiento.get(i));
+				Date fechaNacimiento = formato.parse(this.fechaNacimiento.get(i));
 				Date fechaActual = new Date();
 				long diferencia = fechaActual.getTime() - fechaNacimiento.getTime();
 				int edad = (int) (diferencia / (1000 * 60 * 60 * 24)) / 365;

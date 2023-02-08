@@ -72,7 +72,7 @@ public class Banco {
 		double monto = LeerNumeroEnIntervalo(1, saldoOrigen);
 		saldosCuenta.set(indexOrigen, saldoOrigen - monto);
 		saldosCuenta.set(indexDestino, saldoDestino + monto);
-		transacciones.add(Arrays.asList(numeroTransaccion, cuentaOrigen, tipoTransaccion.get(2) + "-" + monto, cuentaDestino));
+		transacciones.add(Arrays.asList(numeroTransaccion, cuentaOrigen, tipoTransaccion.get(2), "-" + monto, cuentaDestino));
 	}
 
 	private void RealizarTransaccion() {

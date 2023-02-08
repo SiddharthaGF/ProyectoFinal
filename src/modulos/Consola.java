@@ -38,7 +38,7 @@ public class Consola {
 		while (true) {
 			Imprimir(" >> ");
 			string = teclado.nextLine().trim();
-			if (string.length() > 0 && opciones.contains(string.toUpperCase())) {
+			if (opciones.contains(string.toUpperCase())) {
 				teclado.reset();
 				return string;
 			}
@@ -62,14 +62,6 @@ public class Consola {
 
 	public static int LeerNumeroMayorQue(int valor) {
 		return LeerNumeroEnIntervalo(valor, Integer.MAX_VALUE);
-	}
-
-	public static int LeerNumeroMenorQue(int valor) {
-		return LeerNumeroEnIntervalo(-Integer.MAX_VALUE, valor);
-	}
-
-	public static int LeerNumero() {
-		return LeerNumeroEnIntervalo(0, 0);
 	}
 
 	public static void printf(String formato, Object... datos) {
